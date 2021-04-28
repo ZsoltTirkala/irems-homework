@@ -1,0 +1,8 @@
+1. It connects to an external PostgreSQL server:
+	I couldn't finished it in time, so I made a simple custom-gitlab and PostgreSql docker-compose.yml.
+
+2. It uses the /var/data/gitlab directory of the host OS to store all data:
+	I set the volume of gitlab in the docker-compost.yml, you can see it there.
+	
+3. All custom config files are part of the image:
+	All custom config files were copied onto the gitlab image by creating a custom image with the two (gitlab-ce and config files), you can see it in the Dockerfile.

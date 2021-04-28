@@ -1,0 +1,5 @@
+0 23 * * * root cd ~/Documents/Codecool/irems-homework/Task-2 && bash pg-dump.sh
+You have to change the path if it's not here
+You have to add the 1. cronjob to the:
+sudo crontab -e
+Then save it

@@ -1,0 +1,20 @@
+This script was made for the automation of creating and encrypting backups from the Postgres database as a cronjob.
+
+
+First, you have to generate a public-private keypair:
+ openssl req -x509 -nodes -days 1000000 -newkey rsa:4096 -keyout backup_key.pem\
+ -subj "public-private-keypair" \
+ -out backup_key.pem.pub
+
+number_of_days: The number of how long should it keep the older backup files, the measurement is Day.
+backup_dir: The locataion of the backup directory, which contains the backup files.
+backup_date: The date, when the backup was created.
+
+
+
+
+At the beginning, the pg_dump connects to the Db and creats a backup SQL file from it, then it is pipelined to the the gzip compress it.
+After we have the compressed file, we encrypt the file with openssl for safety measures.
+After then, we move the backup file to it's appropriate folder and rename the file with the creation date.
+For checking if it is working as it should, the script put the dates in the "dates.txt" file, so if you see they are apart from 1 day and there are no absent of these datas, everything should be in order.
+In the end, the script will try to find a backup, which is older than 10 days. It is looking into the backup folder and try to find a file, which name (the creation date is the first part as I mentioned earlier) is 10 day apart from the current creation date.

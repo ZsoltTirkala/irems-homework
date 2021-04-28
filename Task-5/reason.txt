@@ -1,0 +1,1 @@
+I used Bash, because it has a better syntax than Shell. It has more functionalities, but portability were a main reason, I would use shell.

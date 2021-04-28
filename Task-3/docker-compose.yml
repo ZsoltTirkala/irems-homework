@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+    web:
+      image: 'gitlab-ce-custom:latest'
+      restart: always
+      ports:
+        - '80:80'
+        - '443:443'
+        - '22:22'
+      volumes:
+        - '/var/data/gitlab/config:/etc/gitlab'
+        - '/var/data/gitlab/logs:/var/log/gitlab'
+        - '/var/data/gitlab/data:/var/opt/gitlab'
+
+    postgres-db:
+      image: 'postgres:latest'
+      environment:
+        POSTGRES_DB: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+      restart: always
